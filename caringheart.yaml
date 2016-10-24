@@ -1,0 +1,229 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: caringheart 
+basePath: /v1
+produces:
+  - application/json
+# Describe your paths here
+paths:
+  # This is a path endpoint. Change it.
+  /water/{duration}: 
+    # This is a HTTP operation
+    get:
+      tags:
+        - water
+      # Describe this verb here. Note: you can use markdown
+      description: get water list
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          name: duration
+          in: path
+          description: day, week, month, default is day
+          required: true
+          type: string
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Water"
+  /water: 
+    # This is a HTTP operation
+    delete:
+      tags:
+        - water
+      # Describe this verb here. Note: you can use markdown
+      description: delete water record
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: water record data
+          required: false
+          schema:
+            $ref: "#/definitions/WaterListData"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+    # This is a HTTP operation
+    post:
+      tags:
+        - water
+      # Describe this verb here. Note: you can use markdown
+      description: save water record
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: water record data
+          required: false
+          schema:
+            $ref: "#/definitions/WaterListData"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+                  
+  # This is a path endpoint. Change it.
+  /heart/{duration}: 
+    # This is a HTTP operation
+    get:
+      tags:
+        - heart
+      # Describe this verb here. Note: you can use markdown
+      description: get heart list
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          name: duration
+          in: path
+          description: day, week, month, default is day
+          required: true
+          type: string
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/Heart"
+  /heart: 
+    # This is a HTTP operation
+    delete:
+      tags:
+        - heart
+      # Describe this verb here. Note: you can use markdown
+      description: delete heart record
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: heart record data
+          required: false
+          schema:
+            $ref: "#/definitions/HeartListData"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+    # This is a HTTP operation
+    post:
+      tags:
+        - heart
+      # Describe this verb here. Note: you can use markdown
+      description: save heart record
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: heart record data
+          required: false
+          schema:
+            $ref: "#/definitions/HeartListData"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+                  
+
+
+definitions:
+  
+  WaterListData:
+    type: object
+    properties:
+      id:
+        type: string
+      date:
+        type: string
+        format: date-time
+      type:
+        type: string
+      amount:
+        type: integer
+        format: int32
+  Water:
+    type: object
+    properties:
+      groupdate:
+        type: string
+        format: date
+      groupinamount:
+        type: integer
+        format: int32
+      groupoutamount:
+        type: integer
+        format: int32
+      listdata:
+        type: array
+        items:
+          $ref: '#/definitions/WaterListData'
+  HeartListData:
+    type: object
+    properties:
+      id:
+        type: string
+      date:
+        type: string
+        format: date-time
+      low:
+        type: integer
+        format: int32
+      high:
+        type: integer
+        format: int32
+      heartbeat:
+        type: integer
+        format: int32
+      weight:
+        type: number
+        format: double
+  Heart:
+    type: object
+    properties:
+      groupdate:
+        type: string
+        format: date
+      listdata:
+        type: array
+        items:
+          $ref: '#/definitions/HeartListData'
+  ResultMsg:
+    type: object
+    properties: 
+      code:
+        type: string
+      msg:
+        type: string
+        
