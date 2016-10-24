@@ -1,7 +1,7 @@
 <configuration>
 
-	<property name="LOG_ROOT" value="/opt/logs/caringheart" />
-	<property name="LOG_FILENAME" value="platform" />
+	<property name="LOG_ROOT" value="/opt/logs" />
+	<property name="LOG_FILENAME" value="caringheart" />
 	<property name="LOG_MAXFILESIZE" value="50MB" />
 	<property name="LOG_PATTERN"
 		value="%date{ISO8601} %-5level [%thread] %class.%method\\(%line\\) - %msg%n" />
