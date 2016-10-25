@@ -1,4 +1,4 @@
-package com.xfeng.caringheart.web.model;
+package com.xfeng.caringheart.web.dto;
 
 import java.util.Objects;
 
@@ -12,6 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 @javax.annotation.Generated(value = "class io.swagger.codegen.languages.SpringCodegen", date = "2016-10-24T07:58:31.601Z")
 
 public class HeartListData {
+	
 	private String id = null;
 
 	private DateTime date = null;

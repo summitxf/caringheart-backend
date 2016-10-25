@@ -14,6 +14,152 @@ produces:
 # Describe your paths here
 paths:
   # This is a path endpoint. Change it.
+  # This is a HTTP operation
+  /user/signup:
+    post:
+      tags:
+        - user
+      # Describe this verb here. Note: you can use markdown
+      description: user signup system, create user data
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: user data, at least username & password
+          required: true
+          schema:
+            $ref: "#/definitions/UserPwd"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+  # This is a HTTP operation
+  /user/signin: 
+    post:
+      tags:
+        - user
+      # Describe this verb here. Note: you can use markdown
+      description: user login system
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: user data, include username & password
+          required: true
+          schema:
+            $ref: "#/definitions/UserPwd"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+  # This is a HTTP operation
+  /user/signout: 
+    post:
+      tags:
+        - user
+      # Describe this verb here. Note: you can use markdown
+      description: user logout system
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: user data, only username is enough
+          required: true
+          schema:
+            $ref: "#/definitions/UserPwd"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+  # This is a HTTP operation
+  /user/changepwd: 
+    put:
+      tags:
+        - user
+      # Describe this verb here. Note: you can use markdown
+      description: user change password
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: user pwd data
+          required: true
+          schema:
+            $ref: "#/definitions/UserPwd"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+  # This is a HTTP operation
+  /user: 
+    put:
+      tags:
+        - user
+      # Describe this verb here. Note: you can use markdown
+      description: update user data
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: user data
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+      security:
+        - user_token: [] 
+    delete:
+      tags:
+        - user
+      # Describe this verb here. Note: you can use markdown
+      description: delete user record
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          in: body
+          name: body
+          description: delete user data, at lease user id
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: successful operation
+          schema:
+            $ref: "#/definitions/ResultMsg"
+      security:
+        - user_token: [] 
   /water/{duration}: 
     # This is a HTTP operation
     get:
@@ -34,7 +180,7 @@ paths:
       responses:
         # Response code
         200:
-          description: successful operation
+          description: successful operation 
           schema:
             type: array
             items:
@@ -161,10 +307,42 @@ paths:
           schema:
             $ref: "#/definitions/ResultMsg"
                   
-
+securityDefinitions:
+  user_token:
+    type: apiKey
+    name: user_token 
+    in: header
 
 definitions:
-  
+  User:
+    type: object
+    properties:
+      id:
+        type: string
+      username:
+        type: string
+      nickname:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      headImg:
+        type: string
+      userStatus:
+        type: integer
+        format: int32
+  UserPwd:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+      newpassword:
+        type: string
   WaterListData:
     type: object
     properties:

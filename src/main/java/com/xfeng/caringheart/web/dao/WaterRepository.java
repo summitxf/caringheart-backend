@@ -1,15 +1,11 @@
 package com.xfeng.caringheart.web.dao;
 
-import java.util.List;
-
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.xfeng.caringheart.web.model.Water;
+import com.xfeng.caringheart.web.entity.WaterEntity;
 
-public interface WaterRepository extends MongoRepository<Water, String> {
+public interface WaterRepository extends MongoRepository<WaterEntity, String> {
 	
-//	Water findByTitle(String title);
-//
-//	List<Water> findByDate(String date);
+
 
 }

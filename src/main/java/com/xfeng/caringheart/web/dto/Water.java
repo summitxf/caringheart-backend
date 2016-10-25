@@ -1,4 +1,4 @@
-package com.xfeng.caringheart.web.model;
+package com.xfeng.caringheart.web.dto;
 
 import java.util.ArrayList;
 import java.util.List;

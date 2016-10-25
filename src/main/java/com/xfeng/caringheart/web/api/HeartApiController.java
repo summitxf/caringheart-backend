@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xfeng.caringheart.web.model.Heart;
-import com.xfeng.caringheart.web.model.HeartListData;
-import com.xfeng.caringheart.web.model.ResultMsg;
+import com.xfeng.caringheart.web.dto.Heart;
+import com.xfeng.caringheart.web.dto.HeartListData;
+import com.xfeng.caringheart.web.dto.ResultMsg;
 import com.xfeng.caringheart.web.service.HeartService;
 
 import io.swagger.annotations.Api;

@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xfeng.caringheart.web.model.ResultMsg;
-import com.xfeng.caringheart.web.model.Water;
-import com.xfeng.caringheart.web.model.WaterListData;
+import com.xfeng.caringheart.web.dto.ResultMsg;
+import com.xfeng.caringheart.web.dto.Water;
+import com.xfeng.caringheart.web.dto.WaterListData;
 import com.xfeng.caringheart.web.service.WaterService;
 
 import io.swagger.annotations.Api;

@@ -6,6 +6,10 @@ springfox:
 server:
   contextPath: /v1
 
+spring.data.mongodb:
+  host: localhost
+  port: 27017
+  database: caringheart
 
 #spring:
 #  datasource:
