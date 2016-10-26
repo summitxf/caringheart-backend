@@ -1,9 +1,13 @@
 package com.xfeng.caringheart.web.service;
 
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.match;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.newAggregation;
+import static org.springframework.data.mongodb.core.query.Criteria.where;
 
+import java.util.Date;
 import java.util.List;
 
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +49,11 @@ public class WaterService {
 		return new ResultMsg().code("0").msg(newentity.getId());
 	}
 
-	public List<Water> list(String duration) {
-		Aggregation agg = newAggregation(
+	public List<Water> list(Integer duration, String userid) {
+		LocalDate localDate = new LocalDate().plusDays(-duration);
+		Date startDate = localDate.toDateTimeAtStartOfDay().toDate();
+		logger.debug(startDate.toString());
+		Aggregation agg = newAggregation(match(where("date").gte(startDate).and("userid").is(userid)),
 				pipeline(
 						"{$project: {date: 1, type: 1, amount: 1, inamount: {$cond: {if: {$eq: ['$type', 'in']}, then: '$amount', else: 0}}, outamount: {$cond: {if: {$eq: ['$type', 'out']}, then: '$amount', else: 0}}, _id: 1}}"),
 				pipeline(

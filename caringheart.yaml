@@ -173,9 +173,10 @@ paths:
         -
           name: duration
           in: path
-          description: day, week, month, default is day
+          description: how many days
           required: true
-          type: string
+          type: integer
+          format: int32
       # Expected responses for this operation:
       responses:
         # Response code
@@ -247,9 +248,10 @@ paths:
         -
           name: duration
           in: path
-          description: day, week, month, default is day
+          description: how many days
           required: true
-          type: string
+          type: integer
+          format: int32
       # Expected responses for this operation:
       responses:
         # Response code

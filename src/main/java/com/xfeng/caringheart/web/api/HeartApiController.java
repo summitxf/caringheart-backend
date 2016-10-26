@@ -48,10 +48,11 @@ public class HeartApiController {
 	@RequestMapping(value = "/{duration}", method = RequestMethod.GET)
 	@ResponseBody
 	List<Heart> heartDurationGet(
-			@ApiParam(value = "day, week, month, default is day", required = true) @PathVariable("duration") String duration) {
+			@ApiParam(value = "how many days", required = true) @PathVariable("duration") Integer duration) {
 		// do some magic!
-		logger.debug(duration);
-		return service.list(duration);
+		logger.debug(duration.toString());
+		String userid = "580f20829b4f730bf085bd42";
+		return service.list(duration, userid);
 	}
 
 	@ApiOperation(value = "", notes = "save heart record", response = ResultMsg.class, tags = { "heart", })
