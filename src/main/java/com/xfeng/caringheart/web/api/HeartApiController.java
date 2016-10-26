@@ -60,7 +60,8 @@ public class HeartApiController {
 	@ResponseBody
 	ResultMsg heartPost(@ApiParam(value = "heart record data", required = true) @RequestBody HeartListData data) {
 		// do some magic!
-		return service.save(data);
+		String userid = "580f20829b4f730bf085bd42";
+		return service.save(data, userid);
 	}
 
 }

@@ -1,9 +1,11 @@
-package com.xfeng.caringheart.web.api;
+package com.xfeng.caringheart.web.configuration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.xfeng.caringheart.web.api.HeartApiController;
 
 /**
  * Home redirection to swagger api documentation

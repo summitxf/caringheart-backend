@@ -67,7 +67,7 @@ public class UserApiController {
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	@ResponseBody
 	ResultMsg userSigninPost(
-			@ApiParam(value = "user data, include username & password", required = true) @RequestBody UserPwd data) {
+			@ApiParam(value = "user data, include username & password", required = true) @RequestBody User data) {
 		// do some magic!
 		return service.findUser(data);
 	}
@@ -77,7 +77,7 @@ public class UserApiController {
 	@RequestMapping(value = "/signout", method = RequestMethod.POST)
 	@ResponseBody
 	ResultMsg userSignoutPost(
-			@ApiParam(value = "user data, only username is enough", required = true) @RequestBody UserPwd data) {
+			@ApiParam(value = "user data, only username is enough", required = true) @RequestBody User data) {
 		// do some magic!
 		return new ResultMsg().code("0");
 	}
@@ -88,7 +88,7 @@ public class UserApiController {
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	@ResponseBody
 	ResultMsg userSignupPost(
-			@ApiParam(value = "user data, at least username & password", required = true) @RequestBody UserPwd data) {
+			@ApiParam(value = "user data, at least username & password", required = true) @RequestBody User data) {
 		// do some magic!
 		return service.save(data);
 	}

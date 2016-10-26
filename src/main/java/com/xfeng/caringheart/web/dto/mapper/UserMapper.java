@@ -4,26 +4,20 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import com.xfeng.caringheart.web.dto.HeartListData;
-import com.xfeng.caringheart.web.entity.HeartEntity;
+import com.xfeng.caringheart.web.dto.User;
+import com.xfeng.caringheart.web.entity.UserEntity;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
 	@Mappings({
-        @Mapping(source = "id", target = "id"),
-        @Mapping(source = "date", target = "date"),
-        @Mapping(source = "low", target = "low"),
-        @Mapping(source = "high", target = "high")
+        @Mapping(source = "id", target = "id")
     })
-	HeartEntity createEntityFromDto(HeartListData dto);
-
+	UserEntity createEntityFromDto(User dto);
+	
 	@Mappings({
-        @Mapping(source = "id", target = "id"),
-        @Mapping(source = "date", target = "date"),
-        @Mapping(source = "low", target = "low"),
-        @Mapping(source = "high", target = "high")
+        @Mapping(target = "password", ignore = true)
     })
-	HeartListData createDtoFromEntity(HeartEntity entity);
+	User createDtoFromEntity(UserEntity entity);
 
 }

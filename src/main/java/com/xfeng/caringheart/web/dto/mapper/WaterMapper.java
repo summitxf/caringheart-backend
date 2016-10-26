@@ -4,26 +4,18 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import com.xfeng.caringheart.web.dto.HeartListData;
-import com.xfeng.caringheart.web.entity.HeartEntity;
+import com.xfeng.caringheart.web.dto.WaterListData;
+import com.xfeng.caringheart.web.entity.WaterEntity;
 
 @Mapper(componentModel = "spring")
 public interface WaterMapper {
 
 	@Mappings({
-        @Mapping(source = "id", target = "id"),
-        @Mapping(source = "date", target = "date"),
-        @Mapping(source = "low", target = "low"),
-        @Mapping(source = "high", target = "high")
+		@Mapping(source = "userid", target = "userid")
     })
-	HeartEntity createEntityFromDto(HeartListData dto);
+	WaterEntity createEntityFromDto(WaterListData dto, String userid);
 
-	@Mappings({
-        @Mapping(source = "id", target = "id"),
-        @Mapping(source = "date", target = "date"),
-        @Mapping(source = "low", target = "low"),
-        @Mapping(source = "high", target = "high")
-    })
-	HeartListData createDtoFromEntity(HeartEntity entity);
+	WaterListData createDtoFromEntity(WaterEntity entity);
+
 
 }

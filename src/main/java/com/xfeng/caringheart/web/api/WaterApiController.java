@@ -60,7 +60,8 @@ public class WaterApiController {
 	@ResponseBody
 	ResultMsg waterPost(@ApiParam(value = "water record data", required = true) @RequestBody WaterListData data) {
 		// do some magic!
-		return service.save(data);
+		String userid = "580f20829b4f730bf085bd42";
+		return service.save(data, userid);
 	}
 
 }
