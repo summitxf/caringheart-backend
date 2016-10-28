@@ -69,6 +69,14 @@ public class WaterService {
 		return mappedResult;
 	}
 
+	public ResultMsg delete(WaterListData water) {
+
+		WaterEntity entity = mapper.createEntityFromDto(water);
+		waterRepository.delete(entity);
+
+		return new ResultMsg().code("0");
+	}
+
 	private AggregationOperation pipeline(final String jsonString) {
 		return new AggregationOperation() {
 			@Override
@@ -76,11 +84,6 @@ public class WaterService {
 				return (DBObject) JSON.parse(jsonString);
 			}
 		};
-	}
-
-	public ResultMsg delete(WaterListData data) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

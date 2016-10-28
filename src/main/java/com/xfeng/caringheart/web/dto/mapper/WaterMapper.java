@@ -11,11 +11,18 @@ import com.xfeng.caringheart.web.entity.WaterEntity;
 public interface WaterMapper {
 
 	@Mappings({
+        @Mapping(target = "userid", ignore = true)
+    })
+	WaterEntity createEntityFromDto(WaterListData water);
+	
+	@Mappings({
 		@Mapping(source = "userid", target = "userid")
     })
 	WaterEntity createEntityFromDto(WaterListData dto, String userid);
 
+	@Mappings({
+		@Mapping(target = "date", dateFormat = "HH:mm:ss")
+	})
 	WaterListData createDtoFromEntity(WaterEntity entity);
-
 
 }

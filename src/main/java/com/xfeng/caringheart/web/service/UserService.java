@@ -23,13 +23,22 @@ public class UserService {
 	@Autowired
 	private UserMapper mapper;
 
-	public ResultMsg save(User data) {
+	public User save(User data) {
 		UserEntity entity = mapper.createEntityFromDto(data);
 		UserEntity newentity = repository.save(entity);
-		return new ResultMsg().code("0").msg(newentity.getId());
+		return mapper.createDtoFromEntity(newentity);
 	}
 
-	public ResultMsg findUser(User data) {
+	public boolean checkUsernameExist(User data) {
+		UserEntity entity = repository.findByUsername(data.getUsername());
+
+		if (null != entity && entity.getUsername().equals(data.getUsername())) {
+			return true;
+		}
+		return false;
+	}
+
+	public ResultMsg validUser(User data) {
 		UserEntity entity = repository.findByUsernameAndPassword(data.getUsername(), data.getPassword());
 
 		if (null != entity && entity.getUsername().equals(data.getUsername())) {

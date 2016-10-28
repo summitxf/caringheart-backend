@@ -59,7 +59,10 @@ public class UserApiController {
 	@ResponseBody
 	ResultMsg userPut(@ApiParam(value = "user data", required = true) @RequestBody User data) {
 		// do some magic!
-		return service.update(data);
+		if (service.checkUsernameExist(data)) {
+			return service.update(data);
+		}
+		return new ResultMsg().code("1").msg("This username is not exist");
 	}
 
 	@ApiOperation(value = "", notes = "user login system", response = ResultMsg.class, tags = { "user", })
@@ -69,7 +72,7 @@ public class UserApiController {
 	ResultMsg userSigninPost(
 			@ApiParam(value = "user data, include username & password", required = true) @RequestBody User data) {
 		// do some magic!
-		return service.findUser(data);
+		return service.validUser(data);
 	}
 
 	@ApiOperation(value = "", notes = "user logout system", response = ResultMsg.class, tags = { "user", })
@@ -90,7 +93,11 @@ public class UserApiController {
 	ResultMsg userSignupPost(
 			@ApiParam(value = "user data, at least username & password", required = true) @RequestBody User data) {
 		// do some magic!
-		return service.save(data);
+		if (service.checkUsernameExist(data)) {
+			return new ResultMsg().code("1").msg("This username cannot be used");
+		}
+		User user = service.save(data);
+		return new ResultMsg().code("0").msg("");
 	}
 
 }
