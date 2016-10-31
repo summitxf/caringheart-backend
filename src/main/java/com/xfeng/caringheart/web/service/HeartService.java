@@ -58,6 +58,7 @@ public class HeartService {
 						"{$group: {_id: {_id: '$_id', groupdate: {$substr: ['$date', 0, 10]}, date: '$date', low: '$low', high: '$high', heartbeat: '$heartbeat', weight: '$weight' }}}"),
 				pipeline(
 						"{$project: {groupdate: '$_id.groupdate', date: '$_id.date', info: {_id: '$_id._id', date: '$_id.date', low: '$_id.low', high: '$_id.high', heartbeat: '$_id.heartbeat', weight: '$_id.weight' }, _id: 0}}"),
+				pipeline("{$sort: {date: -1}}"),
 				pipeline(
 						"{$group: {_id: {date: '$groupdate'}, groupdate: {$max: '$date'}, listdata: {$push: '$info'}}}"),
 				pipeline("{$sort: {_id: -1}}"));

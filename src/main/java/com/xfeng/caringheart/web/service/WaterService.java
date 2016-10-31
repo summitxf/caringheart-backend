@@ -60,6 +60,7 @@ public class WaterService {
 						"{$group: {_id: {_id: '$_id', groupdate: {$substr: ['$date', 0, 10]}, date: '$date', type: '$type', amount: '$amount', }, groupinamount: {$sum: '$inamount'}, groupoutamount: {$sum: '$outamount'}}}"),
 				pipeline(
 						"{$project: {groupdate: '$_id.groupdate', date: '$_id.date', groupinamount: 1, groupoutamount: 1, info: {_id: '$_id._id', date: '$_id.date', type: '$_id.type', amount: '$_id.amount', }, _id: 0}}"),
+				pipeline("{$sort: {date: -1}}"),
 				pipeline(
 						"{$group: {_id: {date: '$groupdate'}, groupdate: {$max: '$date'}, groupinamount: {$sum: '$groupinamount'}, groupoutamount: {$sum: '$groupoutamount'}, listdata: {$push: '$info'}}}"),
 				pipeline("{$sort: {_id: -1}}"));
