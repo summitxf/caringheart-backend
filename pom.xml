@@ -10,7 +10,8 @@
 		<module>mongodb-microservice</module>
 		<module>mysql-microservice</module>
 		<module>wx-microservice</module>
-		<module>common</module>
+		<module>caringheart-common</module>
+		<module>caringheart-eureka-server</module>
 	</modules>
 
 	<properties>
@@ -29,19 +30,6 @@
 	</parent>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<!--SpringFox dependencies -->
 		<dependency>
 			<groupId>io.springfox</groupId>

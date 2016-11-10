@@ -17,7 +17,7 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 @Configuration
 public class TransactionAdviceConfig {
 
-	private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.faith.wx.core.service.service.*.*(..))";
+	private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.xfeng.caringheart.web.service.*.*(..))";
 
 	@Autowired
 	private PlatformTransactionManager transactionManager;
@@ -34,16 +34,10 @@ public class TransactionAdviceConfig {
 
 		NameMatchTransactionAttributeSource source = new NameMatchTransactionAttributeSource();
 
-		source.addTransactionalMethod("create*", txAttr_REQUIRED);
 		source.addTransactionalMethod("save*", txAttr_REQUIRED);
-		source.addTransactionalMethod("add*", txAttr_REQUIRED);
-		source.addTransactionalMethod("put*", txAttr_REQUIRED);
-		source.addTransactionalMethod("copy*", txAttr_REQUIRED);
-		source.addTransactionalMethod("insert*", txAttr_REQUIRED);
+		source.addTransactionalMethod("delete*", txAttr_REQUIRED);
 		source.addTransactionalMethod("update*", txAttr_REQUIRED);
-		source.addTransactionalMethod("merge*", txAttr_REQUIRED);
-		source.addTransactionalMethod("del*", txAttr_REQUIRED);
-		source.addTransactionalMethod("remove*", txAttr_REQUIRED);
+		source.addTransactionalMethod("insert*", txAttr_REQUIRED);
 		source.addTransactionalMethod("get*", txAttr_REQUIRED_READONLY);
 		source.addTransactionalMethod("find*", txAttr_REQUIRED_READONLY);
 		source.addTransactionalMethod("list*", txAttr_REQUIRED_READONLY);

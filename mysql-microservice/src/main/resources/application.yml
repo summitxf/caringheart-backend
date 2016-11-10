@@ -28,3 +28,7 @@ spring:
 mybatis:
   mapperLocations: classpath*:com/xfeng/caringheart/web/dao/*.xml
 spring.jackson.serialization.write-dates-as-timestamps: false
+
+spring.application.name: mysql-service
+server.port: 9997
+eureka.client.serviceUrl.defaultZone: http://localhost:9999/eureka/
