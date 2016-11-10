@@ -1,0 +1,30 @@
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
+server:
+  contextPath: /v1
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3336/caringheart
+    username: caringheart
+    password: '111111'
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+mybatis:
+  mapperLocations: classpath*:com/xfeng/caringheart/web/dao/*.xml
+spring.jackson.serialization.write-dates-as-timestamps: false
