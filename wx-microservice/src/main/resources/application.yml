@@ -32,3 +32,14 @@ spring.jackson.serialization.write-dates-as-timestamps: false
 spring.application.name: wx-service
 server.port: 9996
 eureka.client.serviceUrl.defaultZone: http://localhost:9999/eureka/
+
+weixin:
+  config:
+    appid: wx96d9f463ca0e3640
+    appsecret: d4ffa0e2f86da625d7cd2ee803dbdbad
+    token: faith
+    oauth2:
+      authurl: https://open.weixin.qq.com/connect/oauth2/authorize
+      baseurl: https://api.weixin.qq.com/sns
+      lang: zh_CN
+      defalut_redirect_uri: http://local.faithmore.com

@@ -2,7 +2,6 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>wx-microservice</artifactId>
-	<packaging>war</packaging>
 
 	<parent>
 		<groupId>com.xfeng.caringheart</groupId>
@@ -33,6 +32,15 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.netflix.feign</groupId>
+			<artifactId>feign-gson</artifactId>
+			<version>8.18.0</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -52,16 +60,10 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.26</version>
 		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-			<version>1.2.20</version>
-		</dependency>
 
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
-			<version>1.4.9</version>
 		</dependency>
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -69,16 +71,6 @@
 			<version>1.6.1</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.netflix.feign</groupId>
-			<artifactId>feign-core</artifactId>
-			<version>8.18.0</version>
-		</dependency>
-		<dependency>
-			<groupId>com.netflix.feign</groupId>
-			<artifactId>feign-gson</artifactId>
-			<version>8.18.0</version>
-		</dependency>
 	</dependencies>
 
 	<build>
