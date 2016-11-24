@@ -4,7 +4,7 @@ springfox:
       v2:
         path: /api-docs
 server:
-  contextPath: /v1
+  contextPath: /caringheart-backend
 
 spring.data.mongodb:
   host: localhost
@@ -16,3 +16,5 @@ spring.jackson.serialization.write-dates-as-timestamps: false
 spring.application.name: mongodb-service
 server.port: 9998
 eureka.client.serviceUrl.defaultZone: http://localhost:9999/eureka/
+
+jwt.secret: 123456789

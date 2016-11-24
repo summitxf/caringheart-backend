@@ -38,13 +38,13 @@ public class UserService {
 		return false;
 	}
 
-	public ResultMsg validUser(User data) {
+	public boolean validUser(User data) {
 		UserEntity entity = repository.findByUsernameAndPassword(data.getUsername(), data.getPassword());
 
 		if (null != entity && entity.getUsername().equals(data.getUsername())) {
-			return new ResultMsg().code("0");
+			return true;
 		}
-		return new ResultMsg().code("1").msg("User not found");
+		return false;
 	}
 
 	public ResultMsg update(User data) {
@@ -67,6 +67,14 @@ public class UserService {
 			return new ResultMsg().code("0").msg(newentity.getId());
 		}
 		return new ResultMsg().code("1").msg("User not exist or password invalid");
+	}
+
+	public User getUserByName(String username) {
+		UserEntity entity = repository.findByUsername(username);
+		if (null != entity) {
+			return mapper.createDtoFromEntity(entity);
+		}
+		return null;
 	}
 
 }

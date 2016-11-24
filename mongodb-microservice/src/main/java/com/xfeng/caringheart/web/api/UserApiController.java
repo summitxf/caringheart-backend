@@ -3,6 +3,7 @@ package com.xfeng.caringheart.web.api;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -10,8 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.xfeng.caringheart.web.dto.ResultMsg;
+import com.xfeng.caringheart.web.dto.TokenRsp;
 import com.xfeng.caringheart.web.dto.User;
 import com.xfeng.caringheart.web.dto.UserPwd;
+import com.xfeng.caringheart.web.security.JwtUtil;
 import com.xfeng.caringheart.web.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -27,6 +30,11 @@ import io.swagger.annotations.Authorization;
 public class UserApiController {
 
 	private static final Logger logger = LoggerFactory.getLogger(WaterApiController.class);
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
+	@Autowired
+	private JwtUtil jwtUtil;
 
 	@Autowired
 	UserService service;
@@ -69,10 +77,19 @@ public class UserApiController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "successful operation", response = ResultMsg.class) })
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	@ResponseBody
-	ResultMsg userSigninPost(
+	TokenRsp userSigninPost(
 			@ApiParam(value = "user data, include username & password", required = true) @RequestBody User data) {
-		// do some magic!
-		return service.validUser(data);
+
+		boolean isvalid = service.validUser(data);
+
+		if (isvalid) {
+			User user = service.getUserByName(data.getUsername());
+			String token = jwtUtil.generateToken(user);
+
+			// Return the token
+			return new TokenRsp(token);
+		}
+		return null;
 	}
 
 	@ApiOperation(value = "", notes = "user logout system", response = ResultMsg.class, tags = { "user", })

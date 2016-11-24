@@ -33,7 +33,10 @@
 
 	<logger name="org.springframework" level="info" />
 	<logger name="org.apache.commons" level="info" />
-	<logger name="feign" level="info" />
+	<logger name="org.apache.http" level="info" />
+	<logger name="springfox.documentation" level="info" />
+	<logger name="org.hibernate.validator" level="info" />
+	<logger name="com.netflix.discovery" level="info" />
 
 	<logger name="com.xfeng.caringheart" level="info" />
 
