@@ -35,7 +35,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	protected JwtAuthenticationFilter buildJwtTokenAuthenticationProcessingFilter() throws Exception {
 		List<String> pathsToSkip = Arrays.asList("/user/signin", "/user/signup");
-		SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, "/heart/**");
+		SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, "/**");
 		JwtAuthenticationFilter filter = new JwtAuthenticationFilter(matcher);
 		filter.setAuthenticationManager(this.authenticationManager);
 		return filter;

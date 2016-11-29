@@ -18,3 +18,4 @@ server.port: 9998
 eureka.client.serviceUrl.defaultZone: http://localhost:9999/eureka/
 
 jwt.secret: 123456789
+jwt.expiration: 3600

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
@@ -36,6 +38,10 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 		}
 
 		String jwtToken = header.substring(7);
+		if (jwtUtil.isTokenExpired(jwtToken)) {
+			throw new JwtTokenMissingException("Token is expired");
+		}
+		
 		User user = jwtUtil.parseToken(jwtToken);
 		JwtAuthenticationToken authRequest = new JwtAuthenticationToken(user.getUsername(), user.getPassword());
 
@@ -45,11 +51,9 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		super.successfulAuthentication(request, response, chain, authResult);
-
-		// As this authentication is in HTTP header, after success we need to
-		// continue the request normally
-		// and return the response as if the resource was not secured at all
+		SecurityContext context = SecurityContextHolder.createEmptyContext();
+		context.setAuthentication(authResult);
+		SecurityContextHolder.setContext(context);
 		chain.doFilter(request, response);
 	}
 }
